@@ -46,26 +46,26 @@ if (isset($accessToken)) {
   $user = $userNode->getName();
   $name = $userNode->getField('name');
   $email = $userNode->getField('email');
-  //$userName = str_replace(' ','', $name);
-  $userExist = check_if_user($user);
+  $userName = str_replace(' ','', $user);
+  $userExist = check_if_user($userName);
   if(empty($userExist)) {
     $path = "Images/" . $user;
-    $data = array("userName"=>$user,
+    $data = array("userName"=>$userName,
 		  "name"=>$name,
 		  "email"=>$email,
 		  "storageLink"=>$path,
 		  "trustWorthy"=>100,);
     $url = "https://iladid3.ddns.net/api/users";
-    /*$response = postExecute($url, $data);
+    $response = postExecute($url, $data);
     $status = $response->$status;
-    echo $status;
-    if(($status===200)){// and mkdir_func($path)) { 
+    $mkdir = mkdir_fun($path);
+    if(($status===200) and $mkdir) { 
     } else {
        header('Location: https://iladid3.ddns.net/register.php');
-    }*/
+    }
   }
   $_SESSION['email'] = $email;
-  $_SESSION['login_user'] = $user;
+  $_SESSION['login_user'] = $userName;
   $_SESSION['facebook_access_token'] = (string) $accessToken;
   header('Location: https://iladid3.ddns.net/home.php');
 }
