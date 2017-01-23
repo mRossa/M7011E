@@ -2,6 +2,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 session_name('goc');
 session_start();
+//include ('apiMethods.php');
 
 $fb = new Facebook\Facebook([
   'app_id' => '577901012401084',
@@ -28,7 +29,7 @@ if (isset($accessToken)) {
   // Logged in!
   include('check_if_user.php');
   include('mkdir_function.php');
-  //include 'apiMethods.php';
+ // include('apiMethods.php ');
 
   $fb->setDefaultAccessToken($accessToken);
   try {
@@ -47,20 +48,22 @@ if (isset($accessToken)) {
   $name = $userNode->getField('name');
   $email = $userNode->getField('email');
   $userName = str_replace(' ','', $user);
-  $userExist = check_if_user($userName);
-  if(empty($userExist)) {
-    $path = "Images/" . $user;
+  $res =check_if_user($userName);
+  print_r($res);
+  if(empty($res)) {
+    $path = "Images/" . $userName;
     $data = array("userName"=>$userName,
 		  "name"=>$name,
 		  "email"=>$email,
 		  "storageLink"=>$path,
 		  "trustWorthy"=>100,);
-    $url = "https://iladid3.ddns.net/api/users";
+    $url = "https://iladid3.ddns.net/api/users" .userName;
     $response = postExecute($url, $data);
-    $status = $response->$status;
-    $mkdir = mkdir_fun($path);
-    if(($status===200) and $mkdir) { 
-    } else {
+    //print_r($response);
+    $status = $response->status; //fungerar inte, vet inte va
+    print_r($status);
+    $mkdir = mkdir_func($path);
+    if($status == 200 and $mkdir) {
        header('Location: https://iladid3.ddns.net/register.php');
     }
   }

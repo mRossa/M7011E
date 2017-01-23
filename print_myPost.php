@@ -15,8 +15,8 @@ while($i < $size){
   echo "<div class='panel panel-default'>";
   echo "<div class='panel-heading'>" .time. "</div>";
   echo "<div class='panel-body'>";
-  if(!empty){
-	echo "<img style='width:20em;' src=" . url .">"; 
+  if(!empty($url)){
+	echo "<img style='width:20em;' src=" . $url .">"; 
   }
   echo $desc. "</div>";
   echo "</div>";

@@ -74,7 +74,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-4">
-						or as a guest through
+						or 
 					</div>
 				</div>
 				<div class="form-group">

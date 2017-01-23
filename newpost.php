@@ -30,6 +30,7 @@ session_name('goc');
 session_start();
 $id = session_id();
 $error = "";
+$postDesc ="";
 
 include 'nav.php';
 include 'newpost_function.php';
@@ -47,7 +48,7 @@ include 'newpost_function.php';
 		     </div>
 	</form>--> <!--Question button if we want to add it now -->
 	<form method="post" enctype="multipart/form-data">
-		<textarea class="centering" width="80%" name="editor1"></textarea>
+		<textarea class="centering" width="80%" name="editor1" <?php echo "value=". $postDesc.">"; ?> </textarea>
 		<script>
 			CKEDITOR.replace( 'editor1', 
 			{

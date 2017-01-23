@@ -44,6 +44,9 @@ if($size !== 0){
   echo "<div class='panel panel-default'>";
   echo "<div class='panel-heading' align='left'>";
   echo $time;
+  echo "<form method='delete' align='left'>";
+  echo "<button name='delete' value='$idPost' class='btn-danger' style='margin-right:2%' type='submit' disabled>Delete</button>";
+  echo "</form>";
   echo "<form action='comment.php' metod='get' align='right'>";
   echo "<button name='idPost' value='$idPost' class='btn btn-danger' type='submit' style='margin-right:2%'> View </button>";
   echo "</form>";

@@ -1,7 +1,4 @@
-<?php
-//session_name('goc');
-//session_start();
-//$id = session_id();
+<?php //session_name('goc'); //session_start(); //$id = session_id();
 
 include 'nav.php';
 include 'apiMethods.php';
@@ -24,20 +21,22 @@ $data = $result->data;
   $desc = $data[$i]->postDesc;
   $time = $data[$i]->postTime;
   $url = $data[$i]->postLink;
-  $idPost = $data[$i]->idPost;
+  $id_post = $data[$i]->idPost;
   echo "<div class = 'panel panel-default'>";
   echo "<div class='panel-heading' align='left'>";
   echo $time . " <b>" . $postUser. "</b>";
   echo "<form action='comment.php' method='get' align='right'>";
-  echo "<button name='idPost' value='$idPost' class='btn btn-danger' type='submit' style='margin-right:2%;'>   View   </button></a>";
+  echo "<button name='idPost' value='$id_post' class='btn btn-danger' type='submit' style='margin-right:2%;'>   View   </button></a>";
   echo "</form>";
   echo "</div>";
   echo "<div class='panel-body'>";
   if(!empty($url)) {
-    echo "<img style='width:20em;' src=". $url . ">";
+    echo "<img style='width:30em;  object-fit:contain' src=". $url . ">";
   }
   echo "<p style='align:left;'>".$desc . "</p></div>";
-  //echo "<div class='panel-footer'><form method='POST'><input type='text' placeholder='Add comments here'>  </div> <!-- Add comment input here??? -->
+  echo "<div class='panel-footer'>";
+  include 'like-button.php';
+  echo " </div>";
   echo "</div>"; 
   $i = $i + 1;
  }

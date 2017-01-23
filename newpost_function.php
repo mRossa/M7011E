@@ -6,16 +6,21 @@ if(isset($_POST['new-post'])) {
   $userName = $_SESSION['login_user'];
   $image = 0;
   $desc = 0;
+  $postDesc = $_POST['editor1'];
+  //$postDesc = str_replace('>','', $postDesc);
 
   if($_FILES["image"]["error"] == 0) {
     $image = 1;
     include 'upload_image.php';
     $postLink = $file;
+    $postLink = str_replace(" ", "", $postLink);
     if($message == 0) {
       goto end;
     }
   }
-
+  if($_FILES["image"]["error"] == 1){
+	$error = "To large file, please upload something under 1MB."; 
+  }
   if(!empty($_POST['editor1'])){
     $postDesc = $_POST['editor1'];
     $desc = 1;
@@ -41,7 +46,7 @@ if(isset($_POST['new-post'])) {
 	 $error = "Something went wrong :(";
     }
   } else {
-	$error = "You have to post something";
+	$error = "You have to post something. ";
   }
   end:
 }
